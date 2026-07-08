@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>刘柏君 - 简历</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px;
+    }
+    .resume {
+      width: 794px;
+      height: 1123px;
+      background: #ffffff;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+      display: flex;
+      overflow: hidden;
+    }
+    /* 左侧栏 */
+    .sidebar {
+      width: 260px;
+      background: #1a1a2e;
+      color: #fff;
+      padding: 40px 28px;
+      display: flex;
+      flex-direction: column;
+    }
+    .photo {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: #2a2a4e;
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      font-weight: 700;
+      color: #00ff88;
+      border: 3px solid #00ff88;
+    }
+    .name {
+      font-size: 28px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 4px;
+      letter-spacing: 2px;
+    }
+    .title {
+      font-size: 13px;
+      color: #00ff88;
+      text-align: center;
+      margin-bottom: 32px;
+      font-weight: 500;
+    }
+    .sidebar-section {
+      margin-bottom: 28px;
+    }
+    .sidebar-section-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #00ff88;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.8);
+    }
+    .contact-icon {
+      width: 28px;
+      height: 28px;
+      background: rgba(0,255,136,0.1);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: #00ff88;
+      flex-shrink: 0;
+    }
+    .skill-tag {
+      display: inline-block;
+      padding: 5px 12px;
+      background: rgba(0,255,136,0.1);
+      border: 1px solid rgba(0,255,136,0.2);
+      border-radius: 4px;
+      font-size: 11px;
+      color: #00ff88;
+      margin: 3px;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    /* 右侧主内容 */
+    .main {
+      flex: 1;
+      padding: 40px 36px;
+      background: #ffffff;
+    }
+    .main-section {
+      margin-bottom: 28px;
+    }
+    .main-section-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #1a1a2e;
+      display: inline-block;
+    }
+    .experience-item {
+      margin-bottom: 18px;
+      padding-left: 16px;
+      border-left: 2px solid #00ff88;
+    }
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+    .exp-company {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1a1a2e;
+    }
+    .exp-time {
+      font-size: 11px;
+      color: #888;
+      font-weight: 400;
+    }
+    .exp-role {
+      font-size: 12px;
+      color: #00ff88;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .exp-desc {
+      font-size: 12px;
+      color: #555;
+      line-height: 1.6;
+    }
+    .highlight {
+      color: #00ff88;
+      font-weight: 600;
+    }
+    .project-item {
+      margin-bottom: 14px;
+    }
+    .project-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin-bottom: 4px;
+    }
+    .project-desc {
+      font-size: 11px;
+      color: #666;
+      line-height: 1.5;
+    }
+    .stats-row {
+      display: flex;
+      gap: 24px;
+      margin-top: 8px;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 24px;
+      font-weight: 700;
+      color: #00ff88;
+    }
+    .stat-label {
+      font-size: 10px;
+      color: #888;
+      margin-top: 2px;
+    }
+    .summary {
+      font-size: 12px;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="resume">
+    <!-- 左侧栏 -->
+    <div class="sidebar">
+      <div class="photo">刘</div>
+      <div class="name">刘柏君</div>
+      <div class="title">线上运营总监 · 活动策划</div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">联系方式</div>
+        <div class="contact-item">
+          <div class="contact-icon">☎</div>
+          <span>13641177111</span>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉</div>
+          <span>2368339175@qq.com</span>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">◉</div>
+          <span>北京</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">核心技能</div>
+        <div class="skill-tags">
+          <span class="skill-tag">活动策划</span>
+          <span class="skill-tag">线上获客</span>
+          <span class="skill-tag">抖音运营</span>
+          <span class="skill-tag">视频剪辑</span>
+          <span class="skill-tag">达人资源</span>
+          <span class="skill-tag">私域转化</span>
+          <span class="skill-tag">PPT设计</span>
+          <span class="skill-tag">平面设计</span>
+          <span class="skill-tag">团队管理</span>
+          <span class="skill-tag">O2O运营</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">服务客户</div>
+        <div class="skill-tags">
+          <span class="skill-tag">G端国企</span>
+          <span class="skill-tag">B端品牌</span>
+          <span class="skill-tag">C端消费</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">个人标签</div>
+        <div class="skill-tags">
+          <span class="skill-tag">4年+经验</span>
+          <span class="skill-tag">5人团队管理</span>
+          <span class="skill-tag">闭环思维</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右侧主内容 -->
+    <div class="main">
+      <!-- 个人优势 -->
+      <div class="main-section">
+        <div class="main-section-title">个人优势</div>
+        <div class="summary">
+          4年+运营实战经验，从0到1操盘过国企O2O品牌全链路运营。擅长活动策划落地、抖音获客体系搭建、达人资源整合、私域流量转化。服务过G端（国企/政府）、B端（企业品牌）、C端（消费者运营）三类客户，具备从策略制定到落地执行的完整闭环能力。
+        </div>
+        <div class="stats-row">
+          <div class="stat-item">
+            <div class="stat-number">4年+</div>
+            <div class="stat-label">实战经验</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">5人</div>
+            <div class="stat-label">团队管理</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">曝光提升</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">10000+</div>
+            <div class="stat-label">引流人次</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 工作经历 -->
+      <div class="main-section">
+        <div class="main-section-title">工作经历</div>
+        
+        <div class="experience-item">
+          <div class="exp-header">
+            <div class="exp-company">装修创业</div>
+            <div class="exp-time">2025.07 — 至今</div>
+          </div>
+          <div class="exp-role">联合创始人 / 运营负责人</div>
+          <div class="exp-desc">与团队共同创业，负责整体运营规划、客户对接与项目推进。</div>
+        </div>
+
+        <div class="experience-item">
+          <div class="exp-header">
+            <div class="exp-company">优选口袋</div>
+            <div class="exp-time">2025.01 — 2025.07</div>
+          </div>
+          <div class="exp-role">线上运营总监</div>
+          <div class="exp-desc">负责线上运营管理工作，搭建获客体系，推进业务增长。</div>
+        </div>
+
+        <div class="experience-item">
+          <div class="exp-header">
+            <div class="exp-company">杭州燎原科技</div>
+            <div class="exp-time">2023.03 — 2025.07</div>
+          </div>
+          <div class="exp-role">活动策划执行</div>
+          <div class="exp-desc">负责活动策划筹备、线上账号搭建与推广、活动全案执行。</div>
+        </div>
+
+        <div class="experience-item">
+          <div class="exp-header">
+            <div class="exp-company">上海沁禾时代</div>
+            <div class="exp-time">2021.11 — 2023.03</div>
+          </div>
+          <div class="exp-role">线上运营总监</div>
+          <div class="exp-desc">管理5人线上运营团队，O2O模式运营儿童乐园项目。<span class="highlight">3个月内线上曝光提升100%，覆盖乌兰察布本地50%-70%人口，引流到店超千人次。</span></div>
+        </div>
+      </div>
+
+      <!-- 核心项目 -->
+      <div class="main-section">
+        <div class="main-section-title">核心项目</div>
+        
+        <div class="project-item">
+          <div class="project-name">内蒙古城投 · 未来世界儿童乐园 — O2O品牌从0到1</div>
+          <div class="project-desc">为内蒙古城投旗下儿童乐园操盘全链路运营。从品牌Logo设计、线上账号搭建、抖音内容矩阵、达人资源整合，到线下活动线上引流，实现品牌冷启动到区域认知的完整闭环。3个月曝光量翻倍，覆盖本地50%-70%人口。</div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-name">中栋新能源 / 嗨缔客 / 税务局 — 企业宣传片制作</div>
+          <div class="project-desc">独立完成企业宣传片全流程制作，从素材整理、剪辑节奏、画面调色到字幕包装。输出无字幕版本供多场景二次传播，满足品牌展示、展会播放、线上投放等需求。</div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-name">装修工坊 / 巨鼎佳业 — 视频号引流私域运营方案</div>
+          <div class="project-desc">输出《视频号引流私域》运营方案，拆解从内容选题、账号矩阵搭建、流量获取到私域沉淀的完整链路。针对装修行业场景，提供可落地的引流策略与执行节奏。</div>
+        </div>
+      </div>
+
+      <!-- 工具能力 -->
+      <div class="main-section">
+        <div class="main-section-title">工具能力</div>
+        <div class="skill-tags" style="margin-top: 8px;">
+          <span class="skill-tag" style="background:#f0f0f0;border-color:#ddd;color:#555;">Photoshop</span>
+          <span class="skill-tag" style="background:#f0f0f0;border-color:#ddd;color:#555;">Illustrator</span>
+          <span class="skill-tag" style="background:#f0f0f0;border-color:#ddd;color:#555;">Premiere Pro</span>
+          <span class="skill-tag" style="background:#f0f0f0;border-color:#ddd;color:#555;">After Effects</span>
+          <span class="skill-tag" style="background:#f0f0f0;border-color:#ddd;color:#555;">剪映</span>
+          <span class="skill-tag" style="background:#f0f0f0;border-color:#ddd;color:#555;">XMind</span>
+          <span class="skill-tag" style="background:#f0f0f0;border-color:#ddd;color:#555;">PPT</span>
+          <span class="skill-tag" style="background:#f0f0f0;border-color:#ddd;color:#555;">抖音后台</span>
+          <span class="skill-tag" style="background:#f0f0f0;border-color:#ddd;color:#555;">巨量引擎</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
