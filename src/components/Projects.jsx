@@ -12,11 +12,16 @@ import {
   FileText,
   Lightbulb,
   X,
+  ImageOff,
+  Film,
 } from 'lucide-react';
 
 const BASE = import.meta.env.BASE_URL || '/';
 
-// 作品集数据 — 按业务场景分类，图片从 E 盘作品集复制到 public/assets/portfolio
+// 作品集数据 — 按业务场景分类
+// 文件存在状态说明：
+//   - 内蒙古城投、平面视觉/logo：已上传，可直接显示
+//   - 视频、PPT、运营方案：需从 E 盘复制到 public/assets/portfolio/ 后推送
 const portfolioCategories = [
   {
     id: 'visual',
@@ -35,11 +40,11 @@ const portfolioCategories = [
     desc: '独立完成品牌Logo、宣传三折页、产品手册（中英文版）、活动海报、参会证/嘉宾证等全套视觉物料。从信息架构到视觉落地，确保专业感与可读性兼顾。',
     tags: ['Logo设计', '三折页', '产品手册', '宣传海报', '活动物料'],
     gallery: [
-      { src: `${BASE}assets/portfolio/平面视觉/01_logo设计/未来世界标志.jpg`, type: 'image', caption: '未来世界儿童乐园 Logo' },
-      { src: `${BASE}assets/portfolio/平面视觉/02_三折页/三折页1.png`, type: 'image', caption: '企业三折页' },
-      { src: `${BASE}assets/portfolio/平面视觉/03_产品手册/稿定设计-1.jpg`, type: 'image', caption: '产品手册' },
-      { src: `${BASE}assets/portfolio/平面视觉/04_宣传海报/1 (2).jpg`, type: 'image', caption: '宣传海报' },
-      { src: `${BASE}assets/portfolio/平面视觉/05_活动物料/参会证.jpg`, type: 'image', caption: '活动物料' },
+      { src: `${BASE}assets/portfolio/平面视觉/01_logo设计/未来世界标志.jpg`, type: 'image', caption: '未来世界儿童乐园 Logo', exists: true },
+      { src: `${BASE}assets/portfolio/平面视觉/02_三折页/三折页1.png`, type: 'image', caption: '企业三折页', exists: false },
+      { src: `${BASE}assets/portfolio/平面视觉/03_产品手册/稿定设计-1.jpg`, type: 'image', caption: '产品手册', exists: false },
+      { src: `${BASE}assets/portfolio/平面视觉/04_宣传海报/1 (2).jpg`, type: 'image', caption: '宣传海报', exists: false },
+      { src: `${BASE}assets/portfolio/平面视觉/05_活动物料/参会证.jpg`, type: 'image', caption: '活动物料', exists: false },
     ],
   },
   {
@@ -59,10 +64,10 @@ const portfolioCategories = [
     desc: '可独立完成企业宣传片全流程制作，从素材整理、剪辑节奏、画面调色到字幕包装。输出无字幕版本供多场景二次传播，满足品牌展示、展会播放、线上投放等需求。',
     tags: ['企业宣传片', '品牌视频', 'AE特效', '后期包装'],
     gallery: [
-      { src: `${BASE}assets/portfolio/视频制作/01_企业宣传片/中栋新能源.mp4`, type: 'video', caption: '中栋新能源企业宣传片' },
-      { src: `${BASE}assets/portfolio/视频制作/01_企业宣传片/嗨缔客宣传片.mp4`, type: 'video', caption: '嗨缔客品牌宣传片' },
-      { src: `${BASE}assets/portfolio/视频制作/01_企业宣传片/税务局-青税之光.mp4`, type: 'video', caption: '税务局-青税之光宣传片' },
-      { src: `${BASE}assets/portfolio/视频制作/02_特效片头/片头(2).mp4`, type: 'video', caption: 'AE特效片头' },
+      { src: `${BASE}assets/portfolio/视频制作/01_企业宣传片/中栋新能源.mp4`, type: 'video', caption: '中栋新能源企业宣传片', exists: false },
+      { src: `${BASE}assets/portfolio/视频制作/01_企业宣传片/嗨缔客宣传片.mp4`, type: 'video', caption: '嗨缔客品牌宣传片', exists: false },
+      { src: `${BASE}assets/portfolio/视频制作/01_企业宣传片/税务局-青税之光.mp4`, type: 'video', caption: '税务局-青税之光宣传片', exists: false },
+      { src: `${BASE}assets/portfolio/视频制作/02_特效片头/片头(2).mp4`, type: 'video', caption: 'AE特效片头', exists: false },
     ],
   },
   {
@@ -82,8 +87,8 @@ const portfolioCategories = [
     desc: '输出《视频号引流私域》运营方案，拆解从内容选题、账号矩阵搭建、流量获取到私域沉淀的完整链路。针对装修行业场景，提供可落地的引流策略与执行节奏。',
     tags: ['私域运营', '视频号', '引流策略', 'XMind'],
     gallery: [
-      { src: `${BASE}assets/portfolio/运营方案/png格式/视频号引流私域.png`, type: 'image', caption: '视频号引流私域方案' },
-      { src: `${BASE}assets/portfolio/运营方案/png格式/装修工坊宣传运营.png`, type: 'image', caption: '装修工坊宣传运营方案' },
+      { src: `${BASE}assets/portfolio/运营方案/png格式/视频号引流私域.png`, type: 'image', caption: '视频号引流私域方案', exists: false },
+      { src: `${BASE}assets/portfolio/运营方案/png格式/装修工坊宣传运营.png`, type: 'image', caption: '装修工坊宣传运营方案', exists: false },
     ],
   },
   {
@@ -103,18 +108,18 @@ const portfolioCategories = [
     desc: '独立完成多份企业级PPT：会员合作方案、加盟招商手册、行业分析报告、工长大会演讲稿等。擅长复杂信息的逻辑梳理与视觉呈现，让汇报有结构、有数据、有说服力。',
     tags: ['PPT设计', '商业汇报', '招商方案', '演讲稿'],
     gallery: [
-      { src: `${BASE}assets/portfolio/演示文档/企业PPT/优选口袋/幻灯片1.PNG`, type: 'image', caption: '优选口袋' },
-      { src: `${BASE}assets/portfolio/演示文档/企业PPT/优选口袋/幻灯片11.PNG`, type: 'image', caption: '优选口袋' },
-      { src: `${BASE}assets/portfolio/演示文档/企业PPT/优选口袋/幻灯片13.PNG`, type: 'image', caption: '优选口袋' },
-      { src: `${BASE}assets/portfolio/演示文档/企业PPT/会员合作PPT/幻灯片10.PNG`, type: 'image', caption: '会员合作' },
-      { src: `${BASE}assets/portfolio/演示文档/企业PPT/会员合作PPT/幻灯片12.PNG`, type: 'image', caption: '会员合作' },
-      { src: `${BASE}assets/portfolio/演示文档/企业PPT/会员合作PPT/幻灯片14.PNG`, type: 'image', caption: '会员合作' },
-      { src: `${BASE}assets/portfolio/演示文档/企业PPT/嗨缔客加盟/幻灯片10.PNG`, type: 'image', caption: '嗨缔客加盟' },
-      { src: `${BASE}assets/portfolio/演示文档/企业PPT/嗨缔客加盟/幻灯片12.PNG`, type: 'image', caption: '嗨缔客加盟' },
-      { src: `${BASE}assets/portfolio/演示文档/企业PPT/嗨缔客加盟/幻灯片14.PNG`, type: 'image', caption: '嗨缔客加盟' },
-      { src: `${BASE}assets/portfolio/演示文档/企业PPT/北京巨鼎佳业（备份）/幻灯片1.PNG`, type: 'image', caption: '巨鼎佳业' },
-      { src: `${BASE}assets/portfolio/演示文档/企业PPT/北京巨鼎佳业（备份）/幻灯片10.PNG`, type: 'image', caption: '巨鼎佳业' },
-      { src: `${BASE}assets/portfolio/演示文档/企业PPT/北京巨鼎佳业（备份）/幻灯片11.PNG`, type: 'image', caption: '巨鼎佳业' },
+      { src: `${BASE}assets/portfolio/演示文档/企业PPT/优选口袋/幻灯片1.PNG`, type: 'image', caption: '优选口袋', exists: false },
+      { src: `${BASE}assets/portfolio/演示文档/企业PPT/优选口袋/幻灯片11.PNG`, type: 'image', caption: '优选口袋', exists: false },
+      { src: `${BASE}assets/portfolio/演示文档/企业PPT/优选口袋/幻灯片13.PNG`, type: 'image', caption: '优选口袋', exists: false },
+      { src: `${BASE}assets/portfolio/演示文档/企业PPT/会员合作PPT/幻灯片10.PNG`, type: 'image', caption: '会员合作', exists: false },
+      { src: `${BASE}assets/portfolio/演示文档/企业PPT/会员合作PPT/幻灯片12.PNG`, type: 'image', caption: '会员合作', exists: false },
+      { src: `${BASE}assets/portfolio/演示文档/企业PPT/会员合作PPT/幻灯片14.PNG`, type: 'image', caption: '会员合作', exists: false },
+      { src: `${BASE}assets/portfolio/演示文档/企业PPT/嗨缔客加盟/幻灯片10.PNG`, type: 'image', caption: '嗨缔客加盟', exists: false },
+      { src: `${BASE}assets/portfolio/演示文档/企业PPT/嗨缔客加盟/幻灯片12.PNG`, type: 'image', caption: '嗨缔客加盟', exists: false },
+      { src: `${BASE}assets/portfolio/演示文档/企业PPT/嗨缔客加盟/幻灯片14.PNG`, type: 'image', caption: '嗨缔客加盟', exists: false },
+      { src: `${BASE}assets/portfolio/演示文档/企业PPT/北京巨鼎佳业（备份）/幻灯片1.PNG`, type: 'image', caption: '巨鼎佳业', exists: false },
+      { src: `${BASE}assets/portfolio/演示文档/企业PPT/北京巨鼎佳业（备份）/幻灯片10.PNG`, type: 'image', caption: '巨鼎佳业', exists: false },
+      { src: `${BASE}assets/portfolio/演示文档/企业PPT/北京巨鼎佳业（备份）/幻灯片11.PNG`, type: 'image', caption: '巨鼎佳业', exists: false },
     ],
   },
   {
@@ -136,24 +141,46 @@ const portfolioCategories = [
     desc: '为内蒙古城投旗下儿童乐园项目操盘全链路运营。从品牌Logo设计、线上账号搭建、抖音内容矩阵、达人资源整合，到线下活动线上引流，实现品牌冷启动到区域认知的完整闭环。',
     tags: ['O2O运营', '抖音获客', '达人资源整合', '活动策划', '团队管理'],
     gallery: [
-      { src: `${BASE}assets/portfolio/内蒙古城投/DJI_0182.jpg`, type: 'image', caption: '项目航拍' },
-      { src: `${BASE}assets/portfolio/内蒙古城投/DJI_0189.jpg`, type: 'image', caption: '场地全景' },
-      { src: `${BASE}assets/portfolio/内蒙古城投/DSC00366.jpg`, type: 'image', caption: '活动现场' },
-      { src: `${BASE}assets/portfolio/内蒙古城投/DSC00369.jpg`, type: 'image', caption: '品牌展示' },
-      { src: `${BASE}assets/portfolio/内蒙古城投/DSC00371.jpg`, type: 'image', caption: '活动执行' },
-      { src: `${BASE}assets/portfolio/内蒙古城投/DSC00374.jpg`, type: 'image', caption: '运营成果' },
+      { src: `${BASE}assets/portfolio/内蒙古城投/DJI_0182.jpg`, type: 'image', caption: '项目航拍', exists: true },
+      { src: `${BASE}assets/portfolio/内蒙古城投/DJI_0189.jpg`, type: 'image', caption: '场地全景', exists: true },
+      { src: `${BASE}assets/portfolio/内蒙古城投/DSC00366.jpg`, type: 'image', caption: '活动现场', exists: true },
+      { src: `${BASE}assets/portfolio/内蒙古城投/DSC00369.jpg`, type: 'image', caption: '品牌展示', exists: true },
+      { src: `${BASE}assets/portfolio/内蒙古城投/DSC00371.jpg`, type: 'image', caption: '活动执行', exists: true },
+      { src: `${BASE}assets/portfolio/内蒙古城投/DSC00374.jpg`, type: 'image', caption: '运营成果', exists: true },
     ],
   },
 ];
 
-const fallbackIcons = {
-  target: Target,
-  palette: Palette,
-  video: Video,
-  trending: TrendingUp,
-  presentation: Presentation,
-  lightbulb: Lightbulb,
-};
+// 占位符组件
+function Placeholder({ type, caption, accent }) {
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        gap: '8px',
+        background: 'var(--bg-elevated)',
+        padding: '12px',
+      }}
+    >
+      {type === 'video' ? (
+        <Film size={28} style={{ color: accent, opacity: 0.4 }} />
+      ) : (
+        <ImageOff size={28} style={{ color: accent, opacity: 0.4 }} />
+      )}
+      <span className="text-xs text-muted" style={{ textAlign: 'center' }}>
+        {caption}
+      </span>
+      <span className="text-xs text-muted" style={{ fontSize: '10px', opacity: 0.6 }}>
+        素材待上传
+      </span>
+    </div>
+  );
+}
 
 export default function Projects() {
   const featuredProject = portfolioCategories.find((p) => p.featured);
@@ -256,38 +283,21 @@ export default function Projects() {
                           border: '1px solid var(--border-subtle)',
                           background: 'var(--bg-elevated)',
                           position: 'relative',
-                          cursor: item.type === 'image' ? 'pointer' : 'default',
+                          cursor: item.exists && item.type === 'image' ? 'pointer' : 'default',
                         }}
                       >
                         {item.type === 'image' ? (
                           <img
                             src={item.src}
                             alt={item.caption}
-                            style={{ width: '100%', height: '100%', objectFit: 'cover', cursor: 'zoom-in' }}
-                            onClick={() => openLightbox(item.src, item.caption)}
+                            style={{ width: '100%', height: '100%', objectFit: 'cover', cursor: item.exists ? 'zoom-in' : 'default' }}
+                            onClick={() => item.exists && openLightbox(item.src, item.caption)}
                             onError={(e) => {
                               e.target.style.display = 'none';
-                              e.target.nextElementSibling.style.display = 'flex';
                             }}
                           />
                         ) : null}
-                        <div
-                          style={{
-                            position: 'absolute',
-                            inset: 0,
-                            display: 'none',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            flexDirection: 'column',
-                            gap: '8px',
-                            background: 'var(--bg-elevated)',
-                          }}
-                        >
-                          <Palette size={28} style={{ color: featuredProject.accent, opacity: 0.5 }} />
-                          <span className="text-xs text-muted" style={{ textAlign: 'center', padding: '0 8px' }}>
-                            {item.caption}
-                          </span>
-                        </div>
+                        {!item.exists && <Placeholder type={item.type} caption={item.caption} accent={featuredProject.accent} />}
                       </div>
                     ))}
                   </div>
@@ -450,11 +460,10 @@ export default function Projects() {
                       <img
                         src={item.src}
                         alt={item.caption}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', cursor: 'zoom-in' }}
-                        onClick={() => openLightbox(item.src, item.caption)}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', cursor: item.exists ? 'zoom-in' : 'default' }}
+                        onClick={() => item.exists && openLightbox(item.src, item.caption)}
                         onError={(e) => {
                           e.target.style.display = 'none';
-                          e.target.nextElementSibling.style.display = 'flex';
                         }}
                       />
                     ) : item.type === 'video' ? (
@@ -465,34 +474,10 @@ export default function Projects() {
                         preload="metadata"
                         onError={(e) => {
                           e.target.style.display = 'none';
-                          e.target.nextElementSibling.style.display = 'flex';
                         }}
                       />
                     ) : null}
-                    <div
-                      style={{
-                        position: 'absolute',
-                        inset: 0,
-                        display: item.type === 'link' ? 'flex' : 'none',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexDirection: 'column',
-                        gap: '8px',
-                        background: 'var(--bg-elevated)',
-                        padding: '12px',
-                      }}
-                    >
-                      {item.type === 'video' ? (
-                        <Video size={28} style={{ color: project.accent, opacity: 0.5 }} />
-                      ) : item.type === 'link' ? (
-                        <FileText size={28} style={{ color: project.accent, opacity: 0.5 }} />
-                      ) : (
-                        <Palette size={28} style={{ color: project.accent, opacity: 0.5 }} />
-                      )}
-                      <span className="text-xs text-muted" style={{ textAlign: 'center' }}>
-                        {item.caption}
-                      </span>
-                    </div>
+                    {!item.exists && <Placeholder type={item.type} caption={item.caption} accent={project.accent} />}
                   </div>
                 ))}
               </div>
