@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { Mail, MessageCircle, MapPin, Calendar, Users, Briefcase, GraduationCap, Award } from 'lucide-react';
 
+const BASE = import.meta.env.BASE_URL || '/';
+
 const stats = [
   { icon: Briefcase, value: '4年+', label: '实战工作经验' },
   { icon: Users, value: '5人', label: '团队管理经验' },
@@ -60,7 +62,7 @@ export default function About() {
                 }}
               >
                 <img
-                  src="/assets/portfolio/profile.png"
+                  src={`${BASE}assets/portfolio/profile.png`}
                   alt="刘柏君"
                   style={{
                     width: '100%',
