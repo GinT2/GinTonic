@@ -32,6 +32,9 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
+      - name: Fix asset paths for GitHub Pages subdirectory
+        run: |
+          find dist -type f \( -name "*.html" -o -name "*.js" \) -exec sed -i 's|"/assets/|"./assets/|g' {} +
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
