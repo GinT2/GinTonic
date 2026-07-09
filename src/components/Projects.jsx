@@ -19,9 +19,9 @@ import {
 const BASE = import.meta.env.BASE_URL || '/';
 
 // 作品集数据 — 按业务场景分类
-// 文件存在状态说明：
-//   - 内蒙古城投、平面视觉/logo：已上传，可直接显示
-//   - 视频、PPT、运营方案：需从 E 盘复制到 public/assets/portfolio/ 后推送
+// 文件路径说明：
+//   - 存在=true 的文件已在仓库中（之前上传的）
+//   - 存在=false 的文件需从 E 盘复制到 public/assets/portfolio/ 后推送
 const portfolioCategories = [
   {
     id: 'visual',
@@ -40,11 +40,17 @@ const portfolioCategories = [
     desc: '独立完成品牌Logo、宣传三折页、产品手册（中英文版）、活动海报、参会证/嘉宾证等全套视觉物料。从信息架构到视觉落地，确保专业感与可读性兼顾。',
     tags: ['Logo设计', '三折页', '产品手册', '宣传海报', '活动物料'],
     gallery: [
+      // Logo - 已存在于 portfolio/平面视觉/01_logo设计/
       { src: `${BASE}assets/portfolio/平面视觉/01_logo设计/未来世界标志.jpg`, type: 'image', caption: '未来世界儿童乐园 Logo', exists: true },
-      { src: `${BASE}assets/portfolio/平面视觉/02_三折页/三折页1.png`, type: 'image', caption: '企业三折页', exists: false },
-      { src: `${BASE}assets/portfolio/平面视觉/03_产品手册/稿定设计-1.jpg`, type: 'image', caption: '产品手册', exists: false },
-      { src: `${BASE}assets/portfolio/平面视觉/04_宣传海报/1 (2).jpg`, type: 'image', caption: '宣传海报', exists: false },
-      { src: `${BASE}assets/portfolio/平面视觉/05_活动物料/参会证.jpg`, type: 'image', caption: '活动物料', exists: false },
+      // 三折页 - 已存在于 assets/02_三折页/
+      { src: `${BASE}assets/02_三折页/三折页正面.png`, type: 'image', caption: '企业三折页（正面）', exists: true },
+      { src: `${BASE}assets/02_三折页/三折页反面.png`, type: 'image', caption: '企业三折页（反面）', exists: true },
+      // 海报 - 已存在于 assets/03_海报/
+      { src: `${BASE}assets/03_海报/宣传海报_01.jpg`, type: 'image', caption: '宣传海报 1', exists: true },
+      { src: `${BASE}assets/03_海报/宣传海报_02.jpg`, type: 'image', caption: '宣传海报 2', exists: true },
+      // 活动物料 - 已存在于 assets/04_活动物料/
+      { src: `${BASE}assets/04_活动物料/参会证.jpg`, type: 'image', caption: '参会证', exists: true },
+      { src: `${BASE}assets/04_活动物料/嘉宾证.jpg`, type: 'image', caption: '嘉宾证', exists: true },
     ],
   },
   {
@@ -64,6 +70,7 @@ const portfolioCategories = [
     desc: '可独立完成企业宣传片全流程制作，从素材整理、剪辑节奏、画面调色到字幕包装。输出无字幕版本供多场景二次传播，满足品牌展示、展会播放、线上投放等需求。',
     tags: ['企业宣传片', '品牌视频', 'AE特效', '后期包装'],
     gallery: [
+      // 视频 - 需从 E 盘复制（压缩后 < 100MB）
       { src: `${BASE}assets/portfolio/视频制作/01_企业宣传片/中栋新能源.mp4`, type: 'video', caption: '中栋新能源企业宣传片', exists: false },
       { src: `${BASE}assets/portfolio/视频制作/01_企业宣传片/嗨缔客宣传片.mp4`, type: 'video', caption: '嗨缔客品牌宣传片', exists: false },
       { src: `${BASE}assets/portfolio/视频制作/01_企业宣传片/税务局-青税之光.mp4`, type: 'video', caption: '税务局-青税之光宣传片', exists: false },
@@ -87,6 +94,7 @@ const portfolioCategories = [
     desc: '输出《视频号引流私域》运营方案，拆解从内容选题、账号矩阵搭建、流量获取到私域沉淀的完整链路。针对装修行业场景，提供可落地的引流策略与执行节奏。',
     tags: ['私域运营', '视频号', '引流策略', 'XMind'],
     gallery: [
+      // 运营方案 - 需从 E 盘复制
       { src: `${BASE}assets/portfolio/运营方案/png格式/视频号引流私域.png`, type: 'image', caption: '视频号引流私域方案', exists: false },
       { src: `${BASE}assets/portfolio/运营方案/png格式/装修工坊宣传运营.png`, type: 'image', caption: '装修工坊宣传运营方案', exists: false },
     ],
@@ -108,6 +116,7 @@ const portfolioCategories = [
     desc: '独立完成多份企业级PPT：会员合作方案、加盟招商手册、行业分析报告、工长大会演讲稿等。擅长复杂信息的逻辑梳理与视觉呈现，让汇报有结构、有数据、有说服力。',
     tags: ['PPT设计', '商业汇报', '招商方案', '演讲稿'],
     gallery: [
+      // PPT - 需从 E 盘复制（每个文件夹选前4张）
       { src: `${BASE}assets/portfolio/演示文档/企业PPT/优选口袋/幻灯片1.PNG`, type: 'image', caption: '优选口袋', exists: false },
       { src: `${BASE}assets/portfolio/演示文档/企业PPT/优选口袋/幻灯片11.PNG`, type: 'image', caption: '优选口袋', exists: false },
       { src: `${BASE}assets/portfolio/演示文档/企业PPT/优选口袋/幻灯片13.PNG`, type: 'image', caption: '优选口袋', exists: false },
@@ -141,6 +150,7 @@ const portfolioCategories = [
     desc: '为内蒙古城投旗下儿童乐园项目操盘全链路运营。从品牌Logo设计、线上账号搭建、抖音内容矩阵、达人资源整合，到线下活动线上引流，实现品牌冷启动到区域认知的完整闭环。',
     tags: ['O2O运营', '抖音获客', '达人资源整合', '活动策划', '团队管理'],
     gallery: [
+      // 内蒙古城投 - 已存在于 portfolio/内蒙古城投/
       { src: `${BASE}assets/portfolio/内蒙古城投/DJI_0182.jpg`, type: 'image', caption: '项目航拍', exists: true },
       { src: `${BASE}assets/portfolio/内蒙古城投/DJI_0189.jpg`, type: 'image', caption: '场地全景', exists: true },
       { src: `${BASE}assets/portfolio/内蒙古城投/DSC00366.jpg`, type: 'image', caption: '活动现场', exists: true },
@@ -151,7 +161,7 @@ const portfolioCategories = [
   },
 ];
 
-// 占位符组件
+// 占位符组件（文件未上传时显示）
 function Placeholder({ type, caption, accent }) {
   return (
     <div
